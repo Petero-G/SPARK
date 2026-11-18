@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SPARK — Technological Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--ink:#f7fbff;--mute:#d1dce8;--acc:#b9e8ff;--line:rgba(220,240,255,.2);--glow:185,232,255}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:#05070d}
+body{margin:0;background:#05070d url("Background.jpg") center center/cover fixed no-repeat;color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;position:relative;overflow-x:hidden;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(3,6,12,.54),rgba(3,6,12,.76) 48%,rgba(3,6,12,.9))}
+#c{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#page{position:relative;z-index:1;--a:0px;--x:0px;--lt:0px;--lh:0px;-webkit-mask-image:linear-gradient(to bottom,#000 var(--a),transparent var(--a)),linear-gradient(to right,#000 var(--x),transparent var(--x));mask-image:linear-gradient(to bottom,#000 var(--a),transparent var(--a)),linear-gradient(to right,#000 var(--x),transparent var(--x));-webkit-mask-size:100% 100%,100% var(--lh);mask-size:100% 100%,100% var(--lh);-webkit-mask-position:0 0,0 var(--lt);mask-position:0 0,0 var(--lt);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.wrap{width:min(100% - 36px,900px);margin:0 auto;padding:38px 0 56px;display:grid;gap:22px}
+.panel{background:linear-gradient(145deg,rgba(9,15,24,.84),rgba(5,9,16,.72));border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,38px);box-shadow:0 18px 55px rgba(0,0,0,.2);backdrop-filter:blur(8px)}
+.wrap>main{position:relative;z-index:2}
+.brand{text-align:center;padding:24px 20px 18px}
+.logo{display:block;width:min(280px,70vw);max-height:180px;object-fit:contain;margin:0 auto 18px;filter:drop-shadow(0 6px 24px rgba(185,232,255,.14))}
+.brand-line{font:11px "JetBrains Mono",monospace;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);margin:0}
+.brand-line + .brand-line{margin-top:7px}
+.hero{position:relative;z-index:1;text-align:center;padding:clamp(28px,6vw,54px)}
+.tag{font:11px "JetBrains Mono",monospace;color:var(--acc);letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;display:block}
+h1{font-size:clamp(27px,6vw,48px);line-height:1.15;margin:0 0 16px;letter-spacing:.02em}
+h2{margin:0 0 12px;font-size:clamp(20px,4vw,27px);letter-spacing:.04em}
+p{margin:0 0 12px;color:var(--mute)}
+.intro{max-width:660px;margin:0 auto;font-size:clamp(16px,2.4vw,20px)}
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 0;padding:0;list-style:none;text-align:left}
+.services>li{position:relative;padding:0;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.035);font-weight:600;line-height:1.4;transition:border-color .18s ease,background .18s ease,transform .18s ease}
+.services>li:hover,.services>li:focus-within,.services>li.is-open{z-index:6;border-color:rgba(185,232,255,.48);background:rgba(185,232,255,.08);transform:translateY(-1px)}
+.services>li::before{content:"";position:absolute;left:17px;top:21px;z-index:2;width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px rgba(185,232,255,.5);pointer-events:none}
+.service-trigger{display:block;width:100%;padding:14px 15px 14px 42px;border:0;border-radius:inherit;background:transparent;color:inherit;font:inherit;font-weight:600;line-height:1.4;text-align:left;cursor:pointer}
+.service-trigger:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.service-more{display:inline-block;margin-top:8px;padding:3px 8px;border:1px solid rgba(185,232,255,.24);border-radius:999px;background:rgba(185,232,255,.06);color:var(--acc);font:10px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.service-popover{position:absolute;top:calc(100% + 9px);left:0;z-index:5;width:min(460px,100%);padding:18px;border:1px solid rgba(185,232,255,.38);border-radius:14px;background:rgba(5,10,18,.97);box-shadow:0 18px 48px rgba(0,0,0,.52);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transform:translateY(-5px);pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s}
+.services>li:nth-child(even) .service-popover{left:auto;right:0}
+.services>li:hover .service-popover,.services>li:focus-within .service-popover,.services>li.is-open .service-popover{display:block;opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.popover-title{margin:0 0 8px;color:var(--acc);font:11px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.popover-title--spaced{margin-top:16px}
+.popover-description{margin:0 0 12px;color:var(--mute);font-size:13px;font-weight:400;line-height:1.55}
+.popover-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px;margin:0;padding-left:18px;color:var(--mute);font-size:13px;font-weight:400}
+.popover-list li::marker{color:var(--acc)}
+.contact{text-align:center}
+.contact-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:22px 0 12px}
+.contact-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 20px;border:1px solid rgba(185,232,255,.55);border-radius:999px;color:var(--ink);font-weight:600;text-decoration:none;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.contact-link:hover,.contact-link:focus-visible{background:rgba(185,232,255,.14);border-color:var(--acc);transform:translateY(-2px);outline:none}
+.contact-link:focus-visible{box-shadow:0 0 0 3px rgba(185,232,255,.28)}
+.hours,.copyright{font-size:14px}
+.copyright{margin:24px 0 0}
+#rail{position:absolute;left:0;top:0;width:100%;height:0;z-index:2;pointer-events:none}
+#head{position:absolute;left:0;right:0;top:0;opacity:0;transition:opacity .5s;will-change:transform}
+#head .band{position:absolute;left:0;right:0;top:-80px;height:80px;background:repeating-linear-gradient(0deg,rgba(var(--glow),.2) 0 1px,transparent 1px 4px),linear-gradient(to bottom,transparent,rgba(var(--glow),.2))}
+#head .line{position:absolute;left:0;right:0;top:-1px;height:2px;background:rgb(var(--glow));box-shadow:0 0 16px 3px rgba(var(--glow),.8)}
+#car{position:absolute;top:-7px;left:0;width:16px;height:14px;margin-left:-8px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);box-shadow:0 0 18px 4px rgba(var(--glow),.7)}
+#hint{position:fixed;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0px));text-align:center;font:12px "JetBrains Mono",monospace;letter-spacing:.16em;color:var(--mute);opacity:0;transition:opacity 1.5s;z-index:3;pointer-events:none}
+@media(max-width:600px){body{background-attachment:scroll}.wrap{width:min(100% - 24px,900px);padding-top:18px;gap:14px}.services{grid-template-columns:1fr;gap:9px}.service-trigger{padding-top:12px;padding-bottom:12px}.services>li::before{top:19px}.service-popover{position:static;display:none;width:auto;margin:8px 12px 12px;padding:15px;opacity:1;visibility:visible;transform:none;pointer-events:auto}.services>li:nth-child(even) .service-popover{left:auto;right:auto}.popover-list{grid-template-columns:1fr}.brand{padding-top:14px}.panel{border-radius:15px}}
+@media(prefers-reduced-motion:reduce){.contact-link,.service-popover,.services>li{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hint">TAP OR CLICK TO REVEAL</div>
+<div id="rail"><div id="head"><div class="band"></div><div class="line"></div><div id="car"></div></div></div>
+
+<div id="page"><div class="wrap">
+  <header class="panel brand">
+    <img class="logo" src="Logo.png" alt="SPARK logo">
+    <p class="brand-line">Systems · Platforms · Automation</p>
+    <p class="brand-line">&amp; Reliable Knowledge</p>
+  </header>
+
+  <main>
+    <section class="panel hero">
+      <span class="tag">Technological Solutions</span>
+      <h1>Reliable technology, made accessible.</h1>
+      <p class="intro">We offer a variety of services, including but not limited to:</p>
+      <ul class="services">
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="software-details">Software installation and setup (games and productivity tools)<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="software-details" role="region" aria-label="Software installation and setup details">
+            <p class="popover-title">Popular games</p>
+            <p class="popover-description">Installation and setup for a selection of well-known PC games.</p>
+            <ul class="popover-list">
+              <li>Grand Theft Auto V, IV, San Andreas, Vice City</li>
+              <li>Call of Duty 1–4</li>
+              <li>Call of Duty: Black Ops 1–4</li>
+              <li>FIFA 06–26</li>
+              <li>Need for Speed: Most Wanted, Carbon, Hot Pursuit, Payback, Heat</li>
+              <li>Among others.</li>
+            </ul>
+            <p class="popover-title popover-title--spaced">Productivity and creative tools</p>
+            <p class="popover-description">Get creative, design, and everyday productivity applications set up.</p>
+            <ul class="popover-list">
+              <li>Adobe Photoshop, Illustrator, Premiere Pro, Acrobat</li>
+              <li>AutoCAD and Revit</li>
+              <li>Microsoft Office and Microsoft 365</li>
+              <li>CorelDRAW and SketchUp</li>
+              <li>Blender</li>
+              <li>Among others.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="troubleshooting-details">PC troubleshooting<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="troubleshooting-details" role="region" aria-label="PC troubleshooting services">
+            <p class="popover-title">Repair and upgrades</p>
+            <p class="popover-description">Practical help diagnosing issues, improving performance, and keeping your PC running smoothly.</p>
+            <ul class="popover-list">
+              <li>RAM upgrades</li>
+              <li>SSD/HDD replacement and upgrades</li>
+              <li>Driver installation</li>
+              <li>Hardware diagnostics</li>
+              <li>Performance and startup issues</li>
+              <li>Software and system troubleshooting</li>
+              <li>Data migration and backup assistance</li>
+              <li>Among others.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="poster-details">Poster designing<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="poster-details" role="region" aria-label="Poster design services">
+            <p class="popover-title">Visual design for your message</p>
+            <p class="popover-description">Purposeful layouts that make your announcement, event, or promotion easy to notice and understand.</p>
+            <ul class="popover-list">
+              <li>Event and promotional posters</li>
+              <li>Social media graphics</li>
+              <li>Typography, color, and layout</li>
+              <li>Digital and print-ready designs</li>
+            </ul>
+          </div>
+        </li>
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="website-details">Website design and updates<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="website-details" role="region" aria-label="Website design and update services">
+            <p class="popover-title">Websites built to work everywhere</p>
+            <p class="popover-description">Clean, responsive pages for businesses, portfolios, and personal projects, plus help keeping existing sites current.</p>
+            <ul class="popover-list">
+              <li>New page layouts and content</li>
+              <li>Text and image updates</li>
+              <li>Mobile-friendly improvements</li>
+              <li>Basic layout and link checks</li>
+            </ul>
+          </div>
+        </li>
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="email-details">Email and Microsoft 365 setup<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="email-details" role="region" aria-label="Email and Microsoft 365 setup services">
+            <p class="popover-title">Email and Microsoft 365, ready to use</p>
+            <p class="popover-description">Setup assistance for your accounts and apps, with help connecting the tools you use every day.</p>
+            <ul class="popover-list">
+              <li>Email account setup and sign-in</li>
+              <li>Outlook and mail app configuration</li>
+              <li>Mail, calendar, and contacts sync</li>
+              <li>Microsoft 365 app setup</li>
+              <li>Common account troubleshooting</li>
+            </ul>
+          </div>
+        </li>
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="windows-details">Windows installation and activation<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="windows-details" role="region" aria-label="Operating system installation services">
+            <p class="popover-title">Operating system setup</p>
+            <p class="popover-description">Installation and reinstallation assistance for Windows and Linux distributions.</p>
+            <ul class="popover-list">
+              <li>Windows 11 installation and activation</li>
+              <li>Windows 10 installation and activation</li>
+              <li>Windows reinstallation</li>
+              <li>Linux distribution installations (excluding Arch Linux)</li>
+            </ul>
+          </div>
+        </li>
+        <li class="service-item">
+          <button class="service-trigger" type="button" aria-expanded="false" aria-controls="coding-details">Coding collaborations<span class="service-more">View details +</span></button>
+          <div class="service-popover" id="coding-details" role="region" aria-label="Coding collaboration services">
+            <p class="popover-title">Build and learn together</p>
+            <p class="popover-description">Collaborative support for working through programming tasks, understanding code, and moving projects forward.</p>
+            <ul class="popover-list">
+              <li>Debugging and problem-solving</li>
+              <li>Planning and building small features</li>
+              <li>Code walkthroughs and reviews</li>
+              <li>Working through project requirements</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="panel contact">
+    <span class="tag">Talk to us</span>
+    <h2>Let’s find the right solution for you.</h2>
+    <p class="hours">Available for calls from 8am–8pm</p>
+    <div class="contact-actions">
+      <a class="contact-link" href="https://wa.me/254740447714" target="_blank" rel="noopener noreferrer">Chat on WhatsApp · +254 740 447714</a>
+      <a class="contact-link" href="tel:+254740447714">Call · +254 740 447714</a>
+    </div>
+    <p class="copyright">SPARK · Technological Solutions</p>
+  </footer>
+</div></div>
+
+<script>
+const cv=document.getElementById('c'),cx=cv.getContext('2d'),page=document.getElementById('page'),
+head=document.getElementById('head'),car=document.getElementById('car'),hint=document.getElementById('hint');
+let W,H,D=Math.min(devicePixelRatio||1,2);
+const N=26,dots=[],R=(a,b)=>a+Math.random()*(b-a);
+let mx=innerWidth/2,my=innerHeight/2,started=false,t=0,last=performance.now(),ry=0,ri=0,rp=0,rows=[];
+function build(){
+  const w=document.createTreeWalker(page,NodeFilter.SHOW_TEXT),g=document.createRange(),rc=[];
+  while(w.nextNode()){const n=w.currentNode;if(!n.nodeValue.trim())continue;g.selectNodeContents(n);
+    for(const r of g.getClientRects())if(r.width>2&&r.height>2)rc.push({t:r.top+scrollY,b:r.bottom+scrollY,l:r.left+scrollX,r:r.right+scrollX})}
+  rc.sort((a,b)=>a.t-b.t);rows=[];
+  for(const r of rc){const c=rows[rows.length-1];
+    if(c&&r.t-c.top<8){c.bottom=Math.max(c.bottom,r.b);c.left=Math.min(c.left,r.l);c.right=Math.max(c.right,r.r)}
+    else rows.push({top:r.t,bottom:r.b,left:r.l,right:r.r})}
+  rows.forEach(r=>r.dwell=Math.min(.9,Math.max(.22,(r.right-r.left)/650)));
+  ri=rows.findIndex(r=>r.bottom>ry);if(ri<0)ri=rows.length;rp=0;
+}
+function rs(){W=innerWidth;H=innerHeight;cv.width=W*D;cv.height=H*D;cx.setTransform(D,0,0,D,0,0);build()}
+addEventListener('resize',rs);rs();
+if(document.fonts)document.fonts.ready.then(build);
+function closeServiceDetails(except){
+  document.querySelectorAll('.service-item.is-open').forEach(item=>{
+    if(item===except)return;
+    item.classList.remove('is-open');
+    item.querySelector('.service-trigger').setAttribute('aria-expanded','false');
+  });
+}
+document.querySelectorAll('.service-trigger').forEach(button=>button.addEventListener('click',()=>{
+  const item=button.closest('.service-item'),open=!item.classList.contains('is-open');
+  closeServiceDetails(item);
+  item.classList.toggle('is-open',open);
+  button.setAttribute('aria-expanded',String(open));
+}));
+document.querySelectorAll('.service-trigger').forEach(button=>{
+  button.addEventListener('focus',()=>button.setAttribute('aria-expanded','true'));
+  button.addEventListener('blur',()=>{
+    const item=button.closest('.service-item');
+    if(!item.classList.contains('is-open')&&!item.matches(':hover'))button.setAttribute('aria-expanded','false');
+  });
+});
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeServiceDetails();
+    if(document.activeElement.matches('.service-trigger'))document.activeElement.blur();
+  }
+});
+for(let i=0;i<N;i++)dots.push({x:W/2+R(-30,30),y:H/2+R(-30,30),vx:0,vy:0,color:Math.random()<.5?'#ffffff':'#b9e8ff',r:R(5,9),n:[3,4,5,6,8][i%5],
+  hol:Math.random()<.4,a:R(0,6.3),w:R(-2,2),k:R(0,1),f1:R(.8,2.2),f2:R(.8,2.2),p1:R(0,6.3),p2:R(0,6.3),rad:R(25,70),tr:[]});
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});
+addEventListener('pointerdown',e=>{mx=e.clientX;my=e.clientY;started=true;hint.style.opacity=0;if(!e.target.closest('.service-item'))closeServiceDetails()});
+setTimeout(()=>{if(!started)hint.style.opacity=.45},1800);
+const S=(k,v)=>page.style.setProperty(k,v+'px');
+
+function loop(now){
+  const dt=Math.min(.033,(now-last)/1000);last=now;t+=dt;
+  let printing=false,mode=0,cxp=W/2,cyp=0,LH=0,X=0,hy=0;
+  if(started){
+    const doc=document.documentElement.scrollHeight,target=Math.min(doc,scrollY+H),row=rows[ri];
+    if(row&&row.top<target){
+      printing=true;
+      if(row.bottom<scrollY-40){ry=row.bottom+2;ri++;rp=0}
+      else if(ry<row.top-2)ry=Math.min(row.top-2,ry+900*dt);
+      else{rp+=dt/row.dwell;if(rp>=1){ry=Math.max(ry,row.bottom+2);ri++;rp=0}else mode=1}
+    }else{
+      const gt=Math.min(target,row?row.top-2:target);
+      if(ry<gt-1){printing=true;ry=Math.min(gt,ry+900*dt)}
+    }
+    const cr=rows[ri];
+    if(mode){
+      hy=cr.top-2;LH=cr.bottom-cr.top+4;X=cr.left+(cr.right-cr.left+24)*rp;
+      S('--a',hy);S('--lt',hy);S('--lh',LH);S('--x',X);
+      cxp=X;cyp=(cr.top+cr.bottom)/2-scrollY;
+    }else{
+      hy=ry;S('--a',ry);S('--lh',0);cxp=cr?cr.left:W/2;cyp=ry-scrollY;
+    }
+    head.style.transform='translateY('+hy+'px)';
+    head.style.opacity=printing?1:0;
+    car.style.left=cxp+'px';car.style.top=mode?'0px':'-7px';car.style.height=mode?LH+'px':'14px';
+  }
+  cx.clearRect(0,0,W,H);
+  dots.forEach((d,i)=>{
+    let tx,ty,K,C;
+    if(printing){
+      tx=Math.max(mode?rows[ri].left:8,cxp-i*9+Math.sin(t*7+i)*5);
+      ty=Math.max(12,Math.min(H-12,cyp))+Math.sin(t*9+i*1.9)*(mode?LH/2+3:6);
+      K=240;C=26;
+    }else{
+      tx=mx+Math.cos(t*d.f1+d.p1)*d.rad;ty=my+Math.sin(t*d.f2+d.p2)*d.rad;
+      K=14+d.k*40;C=Math.sqrt(K);
+    }
+    d.vx+=((tx-d.x)*K-d.vx*C)*dt;d.vy+=((ty-d.y)*K-d.vy*C)*dt;
+    d.x+=d.vx*dt;d.y+=d.vy*dt;
+    d.tr.push(d.x,d.y);if(d.tr.length>18)d.tr.splice(0,2);
+    d.a+=d.w*dt*(1+Math.hypot(d.vx,d.vy)/400);
+    const col=d.color;
+    cx.shadowBlur=0;cx.strokeStyle=col;cx.lineCap='round';
+    for(let j=2;j<d.tr.length;j+=2){
+      cx.globalAlpha=j/d.tr.length*.3;cx.lineWidth=d.r*.35*j/d.tr.length;
+      cx.beginPath();cx.moveTo(d.tr[j-2],d.tr[j-1]);cx.lineTo(d.tr[j],d.tr[j+1]);cx.stroke();
+    }
+    cx.save();cx.translate(d.x,d.y);cx.rotate(d.a);cx.beginPath();
+    for(let j=0;j<d.n;j++){const a=j/d.n*6.283;cx[j?'lineTo':'moveTo'](Math.cos(a)*d.r,Math.sin(a)*d.r)}
+    cx.closePath();cx.lineWidth=1.6;cx.shadowColor=col;cx.shadowBlur=14;cx.globalAlpha=1;
+    if(d.hol)cx.stroke();else{cx.fillStyle=col;cx.globalAlpha=.9;cx.fill()}
+    cx.restore();
+  });
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
